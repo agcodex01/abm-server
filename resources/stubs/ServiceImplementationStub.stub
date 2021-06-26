@@ -1,0 +1,9 @@
+<?php
+
+namespace App\Http\Implementations;
+
+use App\Services\DummyService;
+
+class DummyServiceImpl implements DummyService {
+
+}
