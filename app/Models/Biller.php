@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,14 +9,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Biller extends Model
 {
 
-    use HasFactory, UsesUuid, SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name', 'type'
     ];
 
-    public function requirement()
+    public function transactions()
     {
-        return $this->hasOne(Requirement::class);
+        return $this->hasOne(Transaction::class);
     }
 }

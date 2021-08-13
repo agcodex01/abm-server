@@ -1,0 +1,12 @@
+GET http://127.0.0.1:8000/sanctum/csrf-cookie
+
+###
+
+POST http://127.0.0.1:8000/api/login
+Content-Type: application/json
+Accept: application/json
+
+{
+    "email": "admin@adopisoft.com",
+    "password": "@dm1n1$tr@t0r"
+}

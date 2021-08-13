@@ -2,23 +2,23 @@
 
 namespace App\Models;
 
-use App\Traits\UsesUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
-    use HasFactory, UsesUuid;
+    use HasFactory;
 
     protected $fillable = [
+        'biller_id',
+        'service_number',
+        'number',
         'amount',
-        'remit_id',
-        'requirement_id',
         'status'
     ];
 
-    public function requirement()
+    public function biller()
     {
-        return $this->belongsTo(Requirement::class);
+        return $this->belongsTo(Biller::class);
     }
 }
