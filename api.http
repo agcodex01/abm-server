@@ -2,11 +2,90 @@ GET http://127.0.0.1:8000/sanctum/csrf-cookie
 
 ###
 
-POST http://127.0.0.1:8000/api/login
+POST http://127.0.0.1:8000/login
 Content-Type: application/json
 Accept: application/json
 
 {
     "email": "admin@adopisoft.com",
-    "password": "@dm1n1$tr@t0r"
+    "password": "password"
+}
+###
+GET http://127.0.0.1:8000/api/billers
+Accept: application/json
+
+###
+GET http://127.0.0.1:8000/api/billers/94288c07-72be-4af8-8437-e1b483c5460c
+Accept: application/json
+
+###
+POST http://127.0.0.1:8000/api/billers
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "MCWD",
+    "type": "water"
+}
+
+
+###
+GET http://127.0.0.1:8000/api/units
+Accept: application/json
+
+###
+POST  http://127.0.0.1:8000/api/units
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Unit 1",
+    "fund": 1000,
+    "postal_code": "6000",
+    "province": "Cebu",
+    "city": "Cebu",
+    "municipality": "Cebu",
+    "barangay": "Talamban",
+    "street": "Nasipit Rd."
+}
+
+###
+PUT  http://127.0.0.1:8000/api/units/94288c07-6693-43e6-8d1e-54de62f72425
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Unit 2",
+    "fund": 1000,
+    "postal_code": "6000",
+    "province": "Cebu",
+    "city": "Cebu",
+    "municipality": "Cebu",
+    "barangay": "Talamban",
+    "street": "Nasipit Rd."
+}
+
+###
+GET http://127.0.0.1:8000/api/units/94288c07-6693-43e6-8d1e-54de62f72425
+Accept: application/json
+
+###
+GET http://127.0.0.1:8000/api/units/94288c07-6693-43e6-8d1e-54de62f72425/transactions
+Accept: application/json
+
+###
+GET http://127.0.0.1:8000/api/transactions
+Accept: application/json
+
+###
+POST http://127.0.0.1:8000/api/units/94288c07-6693-43e6-8d1e-54de62f72425/transactions
+Accept: application/json
+Content-Type: application/json
+
+{
+    "biller_id": "94288c07-72be-4af8-8437-e1b483c5460c",
+    "service_number": "011156423214",
+    "number": "09466640372",
+    "amount": 10021,
+    "status": "pending"
 }

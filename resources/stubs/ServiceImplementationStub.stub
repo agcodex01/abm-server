@@ -2,7 +2,7 @@
 
 namespace App\Http\Implementations;
 
-use App\Services\DummyService;
+use App\Http\Services\DummyService;
 
 class DummyServiceImpl implements DummyService {
 
