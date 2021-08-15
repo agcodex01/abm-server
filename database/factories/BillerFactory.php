@@ -22,7 +22,7 @@ class BillerFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name('male'),
+            'name' => $this->faker->name(),
             'type' => $this->faker->randomElement(['electricity', 'water'])
         ];
     }

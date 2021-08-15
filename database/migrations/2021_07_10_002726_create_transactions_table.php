@@ -15,10 +15,12 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('remit_id')->nullable();
-            $table->uuid('requirement_id');
-            $table->string('status');
+            $table->uuid('unit_id');
+            $table->uuid('biller_id');
+            $table->string('service_number');
+            $table->string('number');
             $table->double('amount', 8, 2);
+            $table->string('status');
             $table->timestamps();
         });
     }
