@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/logout/{user}', [AuthController::class, 'logout']);
+Route::get('billers/u/types', [BillerController::class, 'types']);
 Route::apiResource('billers', BillerController::class);
 Route::apiResource('units', UnitController::class);
 Route::get('units/{unit}/transactions', [TransactionController::class, 'unitTransactions']);

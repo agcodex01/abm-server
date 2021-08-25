@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\TransactionFilter;
 use App\Http\Requests\TransactionRequest;
 use App\Http\Services\TransactionService;
 use App\Models\Unit;
@@ -15,9 +16,9 @@ class TransactionController extends Controller
         $this->transactionService = $transactionService;
     }
 
-    public function index()
+    public function index(TransactionFilter $transactionFilter)
     {
-        return $this->transactionService->findAll();
+        return $this->transactionService->findAll($transactionFilter);
     }
 
     public function unitTransactions(Unit $unit)
