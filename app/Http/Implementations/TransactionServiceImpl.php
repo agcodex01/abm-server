@@ -2,6 +2,7 @@
 
 namespace App\Http\Implementations;
 
+use App\Filters\TransactionFilter;
 use App\Http\Services\TransactionService;
 use App\Models\Transaction;
 use App\Models\Unit;
@@ -10,9 +11,11 @@ use Illuminate\Database\Eloquent\Collection;
 class TransactionServiceImpl implements TransactionService
 {
 
-    public function findAll(): Collection
+    public function findAll(TransactionFilter $transactionFilter): Collection
     {
-        return Transaction::all();
+        return Transaction::with('biller', 'unit')
+            ->filter($transactionFilter)
+            ->get();
     }
 
     public function findAllByUnit(Unit $unit): Collection

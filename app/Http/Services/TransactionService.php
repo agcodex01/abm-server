@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use App\Filters\TransactionFilter;
 use App\Models\Transaction;
 use App\Models\Unit;
 use Illuminate\Database\Eloquent\Collection;
@@ -11,9 +12,11 @@ interface TransactionService
     /**
      * Get all transactions;
      *
+     * @param \App\Filters\TransactionFilter
+     *
      * @return lluminate\Database\Eloquent\Collection collection of transactions.
      */
-    public function findAll(): Collection;
+    public function findAll(TransactionFilter $transactionFilter): Collection;
 
      /**
      * Get all transactions by unit;
