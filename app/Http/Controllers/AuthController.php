@@ -11,14 +11,12 @@ class AuthController extends Controller
     public function authenticate(AuthRequest $request)
     {
         if (Auth::attempt($request->validated())) {
-            $request->session()->regenerate();
             $user = Auth::user();
             return response()->json([
                 'token' => $user->createToken('access_token')->plainTextToken,
                 'user' => $user,
                 'success' => true
             ]);
-            // return redirect()->intended('dashboard');
         }
 
         return response()->json([
