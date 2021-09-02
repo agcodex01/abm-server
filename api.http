@@ -89,3 +89,28 @@ Content-Type: application/json
     "amount": 10021,
     "status": "pending"
 }
+
+###
+GET http://127.0.0.1:8000/api/remits?remittedBy=Gerald+Afable
+Accept: application/json
+
+###
+POST http://127.0.0.1:8000/api/remits
+Accept: application/json
+Content-Type: application/json
+
+{
+    "remitted_by": "Gerald Afable",
+    "total": 1000,
+    "transaction_ids": [
+        "943d2860-ff02-499c-aa7c-c4fdf45d5fe7",
+        "943d2860-e42d-4e4a-8e10-19e9abfcda2b",
+        "943d2860-d314-4ed8-8051-f8f5cb9079aa"
+    ]
+}
+
+###
+GET http://127.0.0.1:8000/api/remits/943d28ab-3700-416d-a16b-3a17ae011e37/transactions
+
+Accept: application/json
+Content-Type: application/json

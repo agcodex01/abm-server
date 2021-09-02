@@ -29,7 +29,7 @@ class TransactionFactory extends Factory
             'service_number' => $this->faker->creditCardNumber(),
             'number' => $this->faker->phoneNumber(),
             'amount' => $this->faker->numberBetween(100, 500),
-            'status' => $this->faker->randomElement(['remitted', 'pending'])
+            'status' => $this->faker->randomElement([Transaction::PENDING, Transaction::REMMITED])
         ];
     }
 }
