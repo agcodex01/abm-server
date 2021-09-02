@@ -23,7 +23,7 @@ class TransactionServiceImpl implements TransactionService
         return $unit->transactions;
     }
 
-    public function findById(int $id): Transaction
+    public function findById(string $id): Transaction
     {
         return Transaction::findOrFail($id);
     }

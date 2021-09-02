@@ -29,11 +29,13 @@ interface TransactionService
     /**
      * Find Transaction by ID.
      *
-     * @param int $id
+     * @param string $id UUID id
      *
      * @return App\Models\Transaction
+     *
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function findById(int $id): Transaction;
+    public function findById(string $id): Transaction;
 
     /**
      * Create Transaction.

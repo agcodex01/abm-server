@@ -17,6 +17,7 @@ class CreateTransactionsTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('unit_id');
             $table->uuid('biller_id');
+            $table->uuid('remit_id')->nullable();
             $table->string('service_number');
             $table->string('number');
             $table->double('amount', 8, 2);

@@ -11,6 +11,9 @@ class Transaction extends Model
 {
     use HasFactory, Uuids, Filterable;
 
+    const PENDING = 'pending';
+    const REMMITED = 'remmited';
+
     protected $fillable = [
         'unit_id',
         'biller_id',
@@ -28,5 +31,10 @@ class Transaction extends Model
     public function unit()
     {
         return $this->belongsTo(Unit::class);
+    }
+
+    public function remit()
+    {
+        return $this->belongsTo(Remit::class);
     }
 }
