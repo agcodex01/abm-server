@@ -19,11 +19,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::post('/logout/{user}', [AuthController::class, 'logout']);
+Route::post('login', [AuthController::class, 'authenticate']);
+Route::post('logout/{user}', [AuthController::class, 'logout']);
 Route::get('billers/u/types', [BillerController::class, 'types']);
 Route::apiResource('billers', BillerController::class);
 Route::apiResource('units', UnitController::class);
