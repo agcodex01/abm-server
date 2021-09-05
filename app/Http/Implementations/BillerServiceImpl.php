@@ -2,6 +2,7 @@
 
 namespace App\Http\Implementations;
 
+use App\Filters\BillerFilter;
 use App\Http\Services\BillerService;
 use App\Models\Biller;
 use Illuminate\Database\Eloquent\Collection;
@@ -9,9 +10,9 @@ use Illuminate\Database\Eloquent\Collection;
 class BillerServiceImpl implements BillerService
 {
 
-    public function findAll(): Collection
+    public function findAll(BillerFilter $filter): Collection
     {
-        return Biller::all();
+        return Biller::filter($filter)->latest()->get();
     }
 
     public function types(): array
@@ -29,9 +30,11 @@ class BillerServiceImpl implements BillerService
         return Biller::create($data);
     }
 
-    public function update(array $data, Biller $biller): bool
+    public function update(array $data, Biller $biller): Biller
     {
-        return $biller->update($data);
+        $biller->update($data);
+
+        return $biller;
     }
 
     public function delete(Biller $biller):bool

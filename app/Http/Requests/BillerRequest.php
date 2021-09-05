@@ -24,7 +24,7 @@ class BillerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:billers,name,' . $this->biller?->id,
             'type' => 'required'
         ];
     }
