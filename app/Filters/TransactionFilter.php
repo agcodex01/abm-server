@@ -2,7 +2,6 @@
 
 namespace App\Filters;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 
 class TransactionFilter extends Filter
@@ -14,7 +13,7 @@ class TransactionFilter extends Filter
     /**
      * Filter the transactions by unit name.
      *
-     * @param  string|null  $value
+     * @param  string|null  $name
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function unitName(string $name = null): Builder
@@ -62,33 +61,5 @@ class TransactionFilter extends Filter
     public function status(string $status = null)
     {
         return !$status ? $this->builder : $this->builder->where('status', $status);
-    }
-
-    /**
-     * Filter the transactions by create_at.
-     *
-     * @param  string|null  $value
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function createdAt(string $at = null)
-    {
-        if (!$at) {
-            return $this->builder;
-        }
-
-        switch ($at) {
-            case self::TODAY:
-                return  $this->builder
-                    ->whereDate('created_at', Carbon::today());
-            case self::THIS_WEEK:
-                return $this->builder
-                    ->whereBetween(
-                        'created_at',
-                        [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]
-                    );
-            case self::THIS_MONTH:
-                return $this->builder
-                    ->whereMonth('created_at', Carbon::now()->month);
-        }
     }
 }

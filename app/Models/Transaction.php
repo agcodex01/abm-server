@@ -16,6 +16,7 @@ class Transaction extends Model
 
     protected $fillable = [
         'unit_id',
+        'remit_id',
         'biller_id',
         'service_number',
         'number',
