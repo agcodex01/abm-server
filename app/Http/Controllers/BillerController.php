@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\BillerFilter;
 use App\Http\Requests\BillerRequest;
 use App\Http\Services\BillerService;
 use App\Models\Biller;
@@ -14,9 +15,9 @@ class BillerController extends Controller
         $this->billerService = $billerService;
     }
 
-    public function index()
+    public function index(BillerFilter $filter)
     {
-        return $this->billerService->findAll();
+        return $this->billerService->findAll($filter);
     }
 
     public function types()

@@ -22,7 +22,7 @@ interface RemitService
      *
      * @param Remit $remit remit object
      *
-     * @return lluminate\Database\Eloquent\Collection collection of billers.
+     * @return lluminate\Database\Eloquent\Collection collection of transactions.
      */
     public function findRemitTransactions(Remit $remit): Collection;
 

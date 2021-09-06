@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use App\Filters\BillerFilter;
 use App\Models\Biller;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -10,9 +11,11 @@ interface BillerService
     /**
      * Get all billers;
      *
+     * @param \App\Filters\BillerFilter $filter by [ type, createdAt ]
+     *
      * @return lluminate\Database\Eloquent\Collection collection of billers.
      */
-    public function findAll(): Collection;
+    public function findAll(BillerFilter $filter): Collection;
 
     /**
      * Get all biller types;
@@ -47,7 +50,7 @@ interface BillerService
      *
      * @return bool if biller successfully updated.
      */
-    public function update(array $data, Biller $biller): bool;
+    public function update(array $data, Biller $biller): Biller;
 
     /**
      * Delete Biller

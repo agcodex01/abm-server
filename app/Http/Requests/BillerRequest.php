@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Biller;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class BillerRequest extends FormRequest
 {
@@ -24,8 +26,13 @@ class BillerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:billers,name' . $this->getUniqueRule($this->biller),
             'type' => 'required'
         ];
+    }
+
+    private function getUniqueRule(Biller $biller = null)
+    {
+        return  $biller == null ? '' : ',' . $biller->id;
     }
 }
