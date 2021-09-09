@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BillerController;
+use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\RemitController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UnitController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +29,4 @@ Route::post('units/{unit}/transactions', [TransactionController::class, 'create'
 Route::get('transactions', [TransactionController::class, 'index']);
 Route::apiResource('remits', RemitController::class);
 Route::get('remits/{remit}/transactions', [RemitController::class, 'findRemitTransactions']);
+Route::apiResource('collections', CollectionController::class);

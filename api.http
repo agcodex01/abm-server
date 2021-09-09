@@ -114,3 +114,33 @@ GET http://127.0.0.1:8000/api/remits/943d28ab-3700-416d-a16b-3a17ae011e37/transa
 
 Accept: application/json
 Content-Type: application/json
+
+###
+GET http://127.0.0.1:8000/api/collections
+Accept: application/json
+Content-Type: application/json
+
+###
+POST http://127.0.0.1:8000/api/collections
+Accept: application/json
+Content-Type: application/json
+
+{
+    "unit_id": "945aeed8-01aa-41b9-b319-37e9c7b4e6bf",
+    "collected_by": "John Doe",
+    "total": 10000,
+    "collected_at": "2021-08-05"
+}
+
+###
+PUT http://127.0.0.1:8000/api/collections/945af255-811c-4d81-a52f-5ee86e2add41
+Accept: application/json
+Content-Type: application/json
+
+{
+    "unit_id": "945aeed8-01aa-41b9-b319-37e9c7b4e6bf",
+    "collected_by": "Gerald Afable Update",
+    "total": 10000,
+    "collected_at": "2021-08-05"
+}
+
