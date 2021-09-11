@@ -42,9 +42,9 @@ class CollectionController extends Controller
      * @param  \App\Models\Collection  $collection
      * @return \Illuminate\Http\Response
      */
-    public function show(Collection $collection)
+    public function show(string $collection)
     {
-        return $this->collectionService->findCollection($collection);
+        return $this->collectionService->findById($collection);
     }
 
     /**

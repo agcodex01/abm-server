@@ -20,11 +20,11 @@ interface CollectionService
     /**
      * Find collection.
      *
-     * @param \App\Models\Collection $collection
+     * @param string $id string uuid
      *
      * @return App\Models\Collection
      */
-    public function findCollection(Collection $collection): Collection;
+    public function findById(string $id): Collection;
 
     /**
      * Create Collection.
