@@ -14,9 +14,9 @@ class CollectionServiceImpl implements CollectionService {
         return Collection::filter($filter)->get();
     }
 
-    public function findCollection(Collection $collection): Collection
+    public function findById(string $id): Collection
     {
-        return $collection;
+        return Collection::with('unit')->find($id);
     }
 
     public function create(array $data): Collection
