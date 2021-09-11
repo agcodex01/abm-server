@@ -27,11 +27,11 @@ interface BillerService
      /**
      * Find Biller by ID.
      *
-     * @param int $id
+     * @param string $id Uuid id of biller
      *
      * @return App\Models\Biller
      */
-    public function findById(int $id): Biller;
+    public function findById(string $id): Biller;
 
     /**
      * Create Biller.

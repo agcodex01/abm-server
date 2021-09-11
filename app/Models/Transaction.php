@@ -17,6 +17,7 @@ class Transaction extends Model
     protected $fillable = [
         'unit_id',
         'remit_id',
+        'account_id',
         'biller_id',
         'service_number',
         'number',
@@ -37,5 +38,10 @@ class Transaction extends Model
     public function remit()
     {
         return $this->belongsTo(Remit::class);
+    }
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
     }
 }

@@ -23,7 +23,11 @@ class BillerFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'type' => $this->faker->randomElement(['electricity', 'water'])
+            'type' => $this->faker->randomElement([
+                Biller::WATER,
+                Biller::INTERNET,
+                Biller::ELECTRICITY
+            ])
         ];
     }
 }

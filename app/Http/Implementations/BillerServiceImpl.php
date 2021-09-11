@@ -20,7 +20,7 @@ class BillerServiceImpl implements BillerService
         return Biller::getBillerTypes();
     }
 
-    public function findById(int $id): Biller
+    public function findById(string $id): Biller
     {
         return Biller::findOrFail($id);
     }

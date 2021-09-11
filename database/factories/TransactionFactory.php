@@ -23,13 +23,22 @@ class TransactionFactory extends Factory
      */
     public function definition()
     {
+        $biller = Biller::factory()->create();
+        $serviceNumber = $this->faker->creditCardNumber();
+        $number = $this->faker->phoneNumber();
+
         return [
             'unit_id' => Unit::factory()->create(),
-            'biller_id' => Biller::factory()->create(),
-            'service_number' => $this->faker->creditCardNumber(),
-            'number' => $this->faker->phoneNumber(),
+            'biller_id' => $biller->id,
+            'account_id' => $biller->accounts()->create([
+                'biller_id' => $biller->id,
+                'service_number' => $serviceNumber,
+                'number' => $number
+            ]),
+            'service_number' => $serviceNumber,
+            'number' => $number,
             'amount' => $this->faker->numberBetween(100, 500),
-            'status' => $this->faker->randomElement([Transaction::PENDING, Transaction::REMMITED])
+            'status' => Transaction::PENDING
         ];
     }
 }

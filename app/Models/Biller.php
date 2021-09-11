@@ -26,6 +26,11 @@ class Biller extends Model
         return $this->hasMany(Transaction::class);
     }
 
+    public function accounts()
+    {
+        return $this->hasMany(Account::class);
+    }
+
     /**
      * Get all biller types
      *

@@ -78,12 +78,12 @@ GET http://127.0.0.1:8000/api/transactions
 Accept: application/json
 
 ###
-POST http://127.0.0.1:8000/api/units/94288c07-6693-43e6-8d1e-54de62f72425/transactions
+POST http://127.0.0.1:8000/api/units/945d1ed7-1edf-46b7-af09-800314887ae2/transactions
 Accept: application/json
 Content-Type: application/json
 
 {
-    "biller_id": "94288c07-72be-4af8-8437-e1b483c5460c",
+    "biller_id": "945d1ef5-f9c8-4afb-a8d1-5e8529e016b8",
     "service_number": "011156423214",
     "number": "09466640372",
     "amount": 10021,
@@ -144,3 +144,6 @@ Content-Type: application/json
     "collected_at": "2021-08-05"
 }
 
+###
+GET http://127.0.0.1:8000/api/billers/945d1ef5-f9c8-4afb-a8d1-5e8529e016b8/accounts
+Accept: application/json
