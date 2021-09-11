@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BillerController;
 use App\Http\Controllers\CollectionController;
@@ -30,3 +31,4 @@ Route::get('transactions', [TransactionController::class, 'index']);
 Route::apiResource('remits', RemitController::class);
 Route::get('remits/{remit}/transactions', [RemitController::class, 'findRemitTransactions']);
 Route::apiResource('collections', CollectionController::class);
+Route::get('billers/{biller}/accounts', [AccountController::class, 'index']);
