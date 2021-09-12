@@ -13,7 +13,8 @@ class Account extends Model
     protected $fillable = [
         'biller_id',
         'service_number',
-        'number'
+        'number',
+        'balance'
     ];
 
     public function biller()

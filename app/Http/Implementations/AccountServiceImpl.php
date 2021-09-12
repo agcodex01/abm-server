@@ -21,23 +21,32 @@ class AccountServiceImpl implements AccountService
         return  $this->billerService->findById($billerId)->accounts;
     }
 
-    public function findOrCreate(array $transactionData): Account
+    public function findOrCreate(array $data): Account
     {
         $biller = $this->billerService
-            ->findById($transactionData['biller_id']);
+            ->findById($data['biller_id']);
 
-        $account = Account::where('biller_id', $biller->id)
-            ->where('service_number', $transactionData['service_number'])
-            ->first();
+        $account = Account::where([
+            ['biller_id', $biller->id],
+            ['service_number', $data['service_number']]
+        ])->first();
 
         if ($account == null) {
-            $account =  $biller->accounts()->create(
-                collect($transactionData)
-                    ->only('service_number', 'number')
-                    ->all()
-            );
+            $account =  $biller->accounts()->create($data);
         }
 
         return $account;
+    }
+
+    public function useBalance(Account $account): bool
+    {
+        return $account->update([
+            'balance' => 0
+        ]);
+    }
+
+    public function findById(string $id): Account
+    {
+        return Account::findOrFail($id);
     }
 }

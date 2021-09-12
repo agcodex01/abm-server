@@ -11,7 +11,7 @@ class CollectionServiceImpl implements CollectionService {
 
     public function findAll(CollectionFilter $filter): EloquentCollection
     {
-        return Collection::filter($filter)->get();
+        return Collection::with('unit')->filter($filter)->get();
     }
 
     public function findById(string $id): Collection

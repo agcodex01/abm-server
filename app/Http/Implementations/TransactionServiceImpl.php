@@ -37,10 +37,17 @@ class TransactionServiceImpl implements TransactionService
 
     public function create(array $data, Unit $unit): Transaction
     {
-        $account = $this->accountService->findOrCreate($data);
-
-        $data['account_id'] = $account->id;
+        $account = $this->accountService->findById($data['account_id']);
+        $account->update([
+            'number' => $data['number'],
+            'balance' => $this->getBalance($data, $account->balance)
+        ]);
 
         return $unit->transactions()->create($data);
+    }
+
+    private function getBalance(array $transactionData, $currentBalance)
+    {
+        return $currentBalance + ($transactionData['insertedAmount'] - $transactionData['amount']);
     }
 }
