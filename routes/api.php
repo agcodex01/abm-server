@@ -32,3 +32,5 @@ Route::apiResource('remits', RemitController::class);
 Route::get('remits/{remit}/transactions', [RemitController::class, 'findRemitTransactions']);
 Route::apiResource('collections', CollectionController::class);
 Route::get('billers/{biller}/accounts', [AccountController::class, 'index']);
+Route::post('billers/accounts/findOrCreate', [AccountController::class, 'findOrCreate']);
+Route::put('billers/accounts/{account}/useBalance', [AccountController::class, 'useBalance']);

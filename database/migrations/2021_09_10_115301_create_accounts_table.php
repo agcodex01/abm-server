@@ -17,7 +17,8 @@ class CreateAccountsTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('biller_id');
             $table->string('service_number');
-            $table->string('number');
+            $table->string('number')->nullable();
+            $table->double('balance')->default(0);
             $table->timestamps();
         });
     }

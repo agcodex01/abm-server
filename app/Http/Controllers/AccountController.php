@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AccountRequest;
 use App\Http\Services\AccountService;
 use App\Models\Account;
 use App\Models\Biller;
@@ -22,5 +23,15 @@ class AccountController extends Controller
     public function index(string $biller)
     {
         return $this->accountService->findAllByBillerId($biller);
+    }
+
+    public function useBalance(Account $account)
+    {
+        return $this->accountService->useBalance($account);
+    }
+
+    public function findOrCreate(AccountRequest $request)
+    {
+        return $this->accountService->findOrCreate($request->validated());
     }
 }

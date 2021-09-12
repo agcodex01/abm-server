@@ -19,9 +19,25 @@ interface AccountService
     /**
      * Find or create account of specific biller
      *
-     * @param array $transactionData transaction data
+     * @param array $data  data ['biller_id', 'service_number']
      *
      * @return \App\Models\Account
      */
-    public function findOrCreate(array $transactionData): Account;
+    public function findOrCreate(array $data): Account;
+
+    /**
+     * Use current account balance to create transaction.
+     *
+     * @param \App\Models\Account $account account to use balance
+     */
+    public function useBalance(Account $account): bool;
+
+    /**
+     * Find Account by ID.
+     *
+     * @param string $id Uuid id of account
+     *
+     * @return App\Models\Account
+     */
+    public function findById(string $id): Account;
 }

@@ -33,7 +33,8 @@ class TransactionFactory extends Factory
             'account_id' => $biller->accounts()->create([
                 'biller_id' => $biller->id,
                 'service_number' => $serviceNumber,
-                'number' => $number
+                'number' => $number,
+                'balance' => $this->faker->randomNumber(7)
             ]),
             'service_number' => $serviceNumber,
             'number' => $number,

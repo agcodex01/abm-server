@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Transaction;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -22,7 +23,7 @@ class CreateTransactionsTable extends Migration
             $table->string('service_number');
             $table->string('number');
             $table->double('amount', 8, 2);
-            $table->string('status');
+            $table->string('status')->default(Transaction::PENDING);
             $table->timestamps();
         });
     }
