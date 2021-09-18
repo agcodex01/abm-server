@@ -4,10 +4,19 @@ namespace App\Http\Implementations;
 
 use App\Filters\CollectionFilter;
 use App\Http\Services\CollectionService;
+use App\Http\Services\UnitService;
 use App\Models\Collection;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 
-class CollectionServiceImpl implements CollectionService {
+class CollectionServiceImpl implements CollectionService
+{
+
+    private UnitService $unitService;
+
+    public function __construct(UnitService $unitService)
+    {
+        $this->unitService = $unitService;
+    }
 
     public function findAll(CollectionFilter $filter): EloquentCollection
     {
@@ -21,6 +30,8 @@ class CollectionServiceImpl implements CollectionService {
 
     public function create(array $data): Collection
     {
+        $unit = $this->unitService->findById($data['unit_id']);
+        $this->unitService->minusFund($unit, $data['total']);
         return Collection::create($data);
     }
 

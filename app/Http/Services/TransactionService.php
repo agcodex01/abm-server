@@ -46,4 +46,12 @@ interface TransactionService
      * @return App\Models\Transaction new transaction created
      */
     public function create(array $data, Unit $unit): Transaction;
+
+    /**
+     * Get all transaction group per week
+     *
+     * @return  array - [ 'week' => total ]
+     *
+     */
+    public function getTransactionCountPerWeek();
 }

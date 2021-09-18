@@ -12,7 +12,7 @@ class UnitServiceImpl implements UnitService
     {
         return Unit::all();
     }
-    public function findById(int $id): Unit
+    public function findById(string $id): Unit
     {
         return Unit::findOrFail($id);
     }
@@ -30,5 +30,21 @@ class UnitServiceImpl implements UnitService
     public function delete(Unit $unit)
     {
         return $unit->delete();
+    }
+
+    public function addFund(Unit $unit, int $amount): bool
+    {
+        return $unit->update([
+            'fund' => $unit->fund + $amount
+        ]);
+    }
+
+    public function minusFund(Unit $unit, int $amount)
+    {
+        if ($unit->fund >= $amount) {
+            return $unit->update([
+                'fund' => $unit->fund + $amount
+            ]);
+        }
     }
 }

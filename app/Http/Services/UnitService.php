@@ -18,11 +18,11 @@ interface UnitService
     /**
      * Find Unit by ID.
      *
-     * @param int $id
+     * @param string $id
      *
      * @return App\Models\Unit
      */
-    public function findById(int $id): Unit;
+    public function findById(string $id): Unit;
 
     /**
      * Create Unit.
@@ -53,4 +53,22 @@ interface UnitService
      * @throws LogicException
      */
     public function delete(Unit $unit);
+
+    /**
+     * Add fund to a unit.
+     *
+     * @param \App\Models\Unit $unit unit to add fund
+     * @param int $amount the amount to add in unit fund
+     *
+     * @return bool
+     */
+    public function addFund(Unit $unit, int $amount);
+
+    /**
+     * Minus fund to a unit.
+     *
+     * @param \App\Models\Unit $unit unit to minus fund
+     * @param int $amount the amount to minus in unit fund
+     */
+    public function minusFund(Unit $unit, int $amount);
 }
