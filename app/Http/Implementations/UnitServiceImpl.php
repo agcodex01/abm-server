@@ -43,7 +43,7 @@ class UnitServiceImpl implements UnitService
     {
         if ($unit->fund >= $amount) {
             return $unit->update([
-                'fund' => $unit->fund + $amount
+                'fund' => $unit->fund - $amount
             ]);
         }
     }
