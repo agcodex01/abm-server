@@ -152,3 +152,11 @@ Content-Type: application/json
 ###
 GET http://127.0.0.1:8000/api/billers/945d1ef5-f9c8-4afb-a8d1-5e8529e016b8/accounts
 Accept: application/json
+
+###
+GET http://127.0.0.1:8000/api/dashboard
+Accept: application/json
+
+###
+GET http://127.0.0.1:8000/api/dashboard/transactions/preview
+Accept: application/json
