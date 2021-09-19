@@ -18,7 +18,7 @@ interface TransactionService
      */
     public function findAll(TransactionFilter $transactionFilter): Collection;
 
-     /**
+    /**
      * Get all transactions by unit;
      *
      * @param App\Models\Unit $unit where transactions was created.
@@ -53,5 +53,5 @@ interface TransactionService
      * @return  array - [ 'week' => total ]
      *
      */
-    public function getTransactionCountPerWeek();
+    public function getTransactionCountPerWeek(): array;
 }

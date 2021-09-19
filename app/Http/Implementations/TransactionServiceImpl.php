@@ -57,40 +57,31 @@ class TransactionServiceImpl implements TransactionService
         return $currentBalance + ($transactionData['insertedAmount'] - $transactionData['amount']);
     }
 
-    public function getTransactionCountPerWeek()
+    public function getTransactionCountPerWeek(): array
     {
 
-        $transactions =  Transaction::whereYear('created_at', Carbon::now()->year)
+        return Transaction::whereYear('created_at', Carbon::now()->year)
             ->whereMonth('created_at', Carbon::now()->month)
             ->get()
             ->groupBy('status')
-            ->mapToGroups(function ($transactions, $status) {
-                return [$status => $transactions];
-            })->map(function ($transactions) {
-                return  $transactions->first();
-            })
-            ->map(function ($transactions) {
-                return $transactions->groupBy(function ($transaction) {
-                    return $transaction->created_at->format('W');
-                })->map(function ($transactions) {
-                    return $transactions->count();
-                });
-            })->map(function ($transactions) {
+            ->mapToGroups(fn ($transactions, $status) => [$status => $transactions])
+            ->map(fn ($transactions) => $transactions->first())
+            ->map(
+                fn ($transactions) => $transactions
+                    ->groupBy(fn ($transaction) => $transaction->created_at->format('W'))
+                    ->map(fn ($transactions) => $transactions->count())
+            )->map(function ($transactions) {
                 foreach ($this->weeksOfMonth() as $week) {
-                    $weekSale[$week] = 0;
+                    $weeklyTransactions[$week] = 0;
                     foreach ($transactions as $key => $sale) {
                         if ($week == $key) {
-                            $weekSale[$week] = $sale;
+                            $weeklyTransactions[$week] = $sale;
                         }
                     }
                 }
-                return collect($weekSale)->values();
+                return collect($weeklyTransactions)->values();
             })
             ->all();
-
-
-
-        return $transactions;
     }
 
     private function weeksOfMonth(): array

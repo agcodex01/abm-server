@@ -9,6 +9,7 @@ use App\Http\Implementations\DashboardServiceImpl;
 use App\Http\Implementations\RemitServiceImpl;
 use App\Http\Implementations\TransactionServiceImpl;
 use App\Http\Implementations\UnitServiceImpl;
+use App\Http\Implementations\UserServiceImpl;
 use App\Http\Services\AccountService;
 use App\Http\Services\BillerService;
 use App\Http\Services\CollectionService;
@@ -16,6 +17,7 @@ use App\Http\Services\DashboardService;
 use App\Http\Services\RemitService;
 use App\Http\Services\TransactionService;
 use App\Http\Services\UnitService;
+use App\Http\Services\UserService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,7 +29,8 @@ class AppServiceProvider extends ServiceProvider
         DashboardService::class => DashboardServiceImpl::class,
         RemitService::class => RemitServiceImpl::class,
         TransactionService::class => TransactionServiceImpl::class,
-        UnitService::class => UnitServiceImpl::class
+        UnitService::class => UnitServiceImpl::class,
+        UserService::class=> UserServiceImpl::class,
     ];
     /**
      * Register any application services.

@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RemitController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,3 +38,4 @@ Route::post('billers/accounts/findOrCreate', [AccountController::class, 'findOrC
 Route::put('billers/accounts/{account}/useBalance', [AccountController::class, 'useBalance']);
 Route::get('dashboard/summary', [DashboardController::class, 'summary']);
 Route::get('dashboard/transactions/preview', [DashboardController::class, 'transactionPreview']);
+Route::apiResource('users', UserController::class);
