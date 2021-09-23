@@ -39,3 +39,4 @@ Route::put('billers/accounts/{account}/useBalance', [AccountController::class, '
 Route::get('dashboard/summary', [DashboardController::class, 'summary']);
 Route::get('dashboard/transactions/preview', [DashboardController::class, 'transactionPreview']);
 Route::apiResource('users', UserController::class);
+Route::get('roles', [UserController::class, 'roles']);

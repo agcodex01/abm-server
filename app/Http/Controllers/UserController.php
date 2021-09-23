@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Http\Services\UserService;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Ramsey\Uuid\Rfc4122\UuidV4;
 
 class UserController extends Controller
 {
@@ -26,6 +24,11 @@ class UserController extends Controller
         return $this->userService->findAll();
     }
 
+    public function roles()
+    {
+        return $this->userService->getRoles();
+    }
+
     /**
      * Display the specified resource.
      *
@@ -35,6 +38,11 @@ class UserController extends Controller
     public function show(string $user)
     {
         return $this->userService->findById($user);
+    }
+
+    public function store(UserRequest $request)
+    {
+        return $this->userService->create($request->validated());
     }
 
     /**

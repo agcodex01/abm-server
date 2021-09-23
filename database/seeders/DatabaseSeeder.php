@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -14,11 +16,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call([
+            RolesAndPermissionsSeeder::class
+        ]);
         if (config('app.env') == 'local') {
-            \App\Models\User::factory()->create();
-            \App\Models\Transaction::factory(100)->create();
+            $user =  User::factory()->create();
+            $user->assignRole(User::ADMIN);
+            Transaction::factory(100)->create();
         } else {
-            \App\Models\User::create([
+            User::create([
                 'name' => 'Admin',
                 'email' => 'admin@adopisoft.com',
                 'email_verified_at' => now(),
