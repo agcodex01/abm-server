@@ -26,10 +26,7 @@ class AuthRequest extends FormRequest
     {
         return [
             'email' => 'required|email:filter|exists:users,email',
-            'password' => [
-                'required',
-                Password::min(8)
-            ]
+            'password' => 'required|min:8'
         ];
     }
 }

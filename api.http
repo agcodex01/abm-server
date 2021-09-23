@@ -166,16 +166,34 @@ GET http://127.0.0.1:8000/api/users
 Accept: application/json
 
 ###
+GET http://127.0.0.1:8000/api/users/94736870-69dc-4d56-b13f-1e4851912073
+Accept: application/json
+
+###
+POST http://127.0.0.1:8000/api/users
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "Admin 2",
+    "email": "collector1@adopisoft.com",
+    "password": "password",
+    "roles": ["Admin","Manager"]
+}
+
+###
 GET http://127.0.0.1:8000/api/users/946b6fbc-5f11-413c-a4cf-691f43e11b18
 Accept: application/json
 
 ###
-PUT http://127.0.0.1:8000/api/users/946b6fbc-5f11-413c-a4cf-691f43e11b18
+PUT http://127.0.0.1:8000/api/users/94736870-69dc-4d56-b13f-1e4851912073
 Accept: application/json
 Content-Type: application/json
 
 {
     "name": "Admin",
-    "email": "administrator@adopisoft.com"
+    "email": "administrator@adopisoft.com",
+    "password": "password",
+    "roles": ["Admin"]
 }
 

@@ -31,4 +31,19 @@ interface UserService
      */
     public function update(array $data, User $user);
 
+    /**
+     * Get user roles
+     *
+     * @return array
+     */
+    public function getRoles(): array;
+
+    /**
+     * Create new User
+     *
+     * @param array $data UserRequest validated data
+     *
+     * @return \App\Models\User
+     */
+    public function create(array $data): User;
 }

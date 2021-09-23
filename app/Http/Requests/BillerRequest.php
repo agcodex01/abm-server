@@ -2,10 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Biller;
 use App\Traits\UniqueRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class BillerRequest extends FormRequest
 {
