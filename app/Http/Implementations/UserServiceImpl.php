@@ -26,7 +26,9 @@ class UserServiceImpl implements UserService
             $data['password'] = Hash::make($data['password']);
         }
 
-        $user->syncRoles($data['roles']);
+        if (isset($data['roles'])) {
+            $user->syncRoles($data['roles']);
+        }
 
         return $user->update($data);
     }
@@ -45,5 +47,10 @@ class UserServiceImpl implements UserService
         $user->syncRoles($data['roles']);
 
         return $user;
+    }
+
+    public function hasAccess(User $user, array $roles): bool
+    {
+        return $user->hasAnyRole($roles);
     }
 }
