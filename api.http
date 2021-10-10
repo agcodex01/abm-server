@@ -13,6 +13,7 @@ Accept: application/json
 ###
 GET http://127.0.0.1:8000/api/billers
 Accept: application/json
+Authorization: Bearer 5|b9auoUe9z9yI7ce9EGkGFQ9F0wM0nhr1hcjvGdjD
 
 ###
 GET http://127.0.0.1:8000/api/billers/94288c07-72be-4af8-8437-e1b483c5460c

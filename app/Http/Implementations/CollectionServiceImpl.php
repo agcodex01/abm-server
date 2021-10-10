@@ -4,18 +4,22 @@ namespace App\Http\Implementations;
 
 use App\Filters\CollectionFilter;
 use App\Http\Services\CollectionService;
+use App\Http\Services\StorageService;
 use App\Http\Services\UnitService;
 use App\Models\Collection;
+use App\Utils\StorageUtil;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 
 class CollectionServiceImpl implements CollectionService
 {
 
     private UnitService $unitService;
+    private StorageService $storageService;
 
-    public function __construct(UnitService $unitService)
+    public function __construct(UnitService $unitService, StorageService $storageService)
     {
         $this->unitService = $unitService;
+        $this->storageService = $storageService;
     }
 
     public function findAll(CollectionFilter $filter): EloquentCollection
@@ -25,7 +29,7 @@ class CollectionServiceImpl implements CollectionService
 
     public function findById(string $id): Collection
     {
-        return Collection::with('unit')->find($id);
+        return Collection::with('unit', 'images')->find($id);
     }
 
     public function create(array $data): Collection
@@ -42,6 +46,24 @@ class CollectionServiceImpl implements CollectionService
 
     public function delete(Collection $collection)
     {
+        $collection->images->each(fn ($image) => $this->storageService->deleteImage($image->url));
+
         return $collection->delete();
+    }
+
+    public function attachImages(Collection $collection, array $images): void
+    {
+        foreach ($images as $image) {
+
+            $name = StorageUtil::generateFileName($image);
+            $path = Collection::IMAGES_LOCATION . '/' . $name;
+
+            $collection->images()->create([
+                'name' => $name,
+                'url' => $path
+            ]);
+
+            $this->storageService->uploadImage($image, $path);
+        }
     }
 }

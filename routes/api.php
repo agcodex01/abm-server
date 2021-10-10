@@ -7,6 +7,7 @@ use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RemitController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UnitConfigController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -43,5 +44,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('users', UserController::class);
     Route::get('users/{user}/roles/hasAccess', [UserController::class, 'hasAccess']);
     Route::get('roles', [UserController::class, 'roles']);
+    Route::get('units/{unit}/config', [UnitConfigController::class, 'getConfig']);
+    Route::post('units/{unit}/config', [UnitConfigController::class, 'store']);
+    Route::delete('units/{unit}/config', [UnitConfigController::class, 'store']);
 });
 

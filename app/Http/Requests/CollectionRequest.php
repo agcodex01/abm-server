@@ -27,7 +27,9 @@ class CollectionRequest extends FormRequest
             'unit_id' => 'required|uuid|exists:units,id',
             'collected_by' => 'required',
             'total' => 'required|numeric',
-            'collected_at' => 'required|date'
+            'collected_at' => 'required|date',
+            'images' => 'sometimes|array',
+            'images.*' => 'image'
         ];
     }
 }

@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         if (config('app.env') == 'local') {
             $user =  User::factory()->create();
             $user->assignRole(User::ADMIN);
-            Transaction::factory(100)->create();
+            // Transaction::factory(100)->create();
         } else {
             User::create([
                 'name' => 'Admin',
