@@ -14,6 +14,7 @@ class CreateUnitConfigsTable extends Migration
     public function up()
     {
         Schema::create('unit_configs', function (Blueprint $table) {
+            $table->id();
             $table->uuid('unit_id');
             $table->string('token');
         });
