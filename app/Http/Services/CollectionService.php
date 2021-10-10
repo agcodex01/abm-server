@@ -55,4 +55,14 @@ interface CollectionService
      * @throws LogicException
      */
     public function delete(Collection $collection);
+
+    /**
+     * Attach images to collection
+     *
+     * @param \App\Models\Collection $collection collection where to attach image(s)
+     * @param array $images
+     *
+     * @return void
+     */
+    public function attachImages(Collection $collection, array $images): void;
 }

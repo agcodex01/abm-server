@@ -33,7 +33,13 @@ class CollectionController extends Controller
      */
     public function store(CollectionRequest $request)
     {
-        return $this->collectionService->create($request->validated());
+        $collection = $this->collectionService->create($request->validated());
+
+        if ($request->hasFile('images')) {
+            $this->collectionService->attachImages($collection, $request->file('images'));
+        }
+
+        return $collection;
     }
 
     /**

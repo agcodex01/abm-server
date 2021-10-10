@@ -5,10 +5,13 @@ namespace App\Models;
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
 
 class Unit extends Model
 {
-    use HasFactory, Uuids;
+    use HasFactory,
+        Uuids,
+        HasApiTokens;
 
     protected $fillable = [
         'name',
@@ -29,5 +32,10 @@ class Unit extends Model
     public function collections()
     {
         return $this->hasMany(Collection::class);
+    }
+
+    public function config()
+    {
+        return $this->hasOne(UnitConfig::class);
     }
 }
