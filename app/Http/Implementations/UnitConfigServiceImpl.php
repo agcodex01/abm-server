@@ -24,6 +24,6 @@ class UnitConfigServiceImpl implements UnitConfigService {
     {
         $unit->tokens()->delete();
 
-        return $unit->config()->delete();
+        return $unit->config->delete();
     }
 }
