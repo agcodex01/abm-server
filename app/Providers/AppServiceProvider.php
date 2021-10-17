@@ -8,6 +8,7 @@ use App\Http\Implementations\CollectionServiceImpl;
 use App\Http\Implementations\DashboardServiceImpl;
 use App\Http\Implementations\LocalStorageServiceImpl;
 use App\Http\Implementations\RemitServiceImpl;
+use App\Http\Implementations\SettingServiceImpl;
 use App\Http\Implementations\TransactionServiceImpl;
 use App\Http\Implementations\UnitConfigServiceImpl;
 use App\Http\Implementations\UnitServiceImpl;
@@ -17,6 +18,7 @@ use App\Http\Services\BillerService;
 use App\Http\Services\CollectionService;
 use App\Http\Services\DashboardService;
 use App\Http\Services\RemitService;
+use App\Http\Services\SettingService;
 use App\Http\Services\StorageService;
 use App\Http\Services\TransactionService;
 use App\Http\Services\UnitConfigService;
@@ -32,12 +34,14 @@ class AppServiceProvider extends ServiceProvider
         CollectionService::class => CollectionServiceImpl::class,
         DashboardService::class => DashboardServiceImpl::class,
         RemitService::class => RemitServiceImpl::class,
+        SettingService::class => SettingServiceImpl::class,
         StorageService::class => LocalStorageServiceImpl::class,
         TransactionService::class => TransactionServiceImpl::class,
         UnitConfigService::class => UnitConfigServiceImpl::class,
         UnitService::class => UnitServiceImpl::class,
-        UserService::class=> UserServiceImpl::class,
+        UserService::class => UserServiceImpl::class,
     ];
+
     /**
      * Register any application services.
      *
