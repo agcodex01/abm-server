@@ -6,6 +6,7 @@ use App\Http\Controllers\BillerController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RemitController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UnitConfigController;
 use App\Http\Controllers\UnitController;
@@ -47,5 +48,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('units/{unit}/config', [UnitConfigController::class, 'getConfig']);
     Route::post('units/{unit}/config', [UnitConfigController::class, 'store']);
     Route::delete('units/{unit}/config', [UnitConfigController::class, 'store']);
+    Route::get('settings', [SettingController::class, 'get']);
+    Route::put('settings', [SettingController::class, 'update']);
 });
 
