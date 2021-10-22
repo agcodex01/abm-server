@@ -29,9 +29,9 @@ class UnitRequest extends FormRequest
             'fund' => 'required',
             'postal_code' => 'required',
             'province' => 'required',
-            'city' => 'required',
+            'city' => 'sometimes',
             'municipality' => 'required',
-            'barangay' => 'required',
+            'barangay' => 'sometimes',
             'street' => 'sometimes'
         ];
     }
