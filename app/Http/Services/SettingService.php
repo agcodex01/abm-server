@@ -15,6 +15,13 @@ interface SettingService
     public function get(): Setting | null;
 
     /**
+     * Get or create Setting
+     *
+     * @return \App\Models\Setting
+     */
+    public function findOrCreate(): Setting;
+
+    /**
      * Update setting
      *
      * @param array $data settings value

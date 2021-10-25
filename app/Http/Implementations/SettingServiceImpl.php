@@ -10,7 +10,14 @@ class SettingServiceImpl implements SettingService
 
     public function get(): Setting | null
     {
-        return Setting::first();
+        return $this->findOrCreate();
+    }
+
+    public function findOrCreate(): Setting
+    {
+        return Setting::firstOrCreate([
+            'fee' => 5
+        ]);
     }
 
     public function update(array $data): Setting
