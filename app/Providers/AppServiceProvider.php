@@ -38,7 +38,6 @@ class AppServiceProvider extends ServiceProvider
         FeedbackService::class => FeedbackServiceImpl::class,
         RemitService::class => RemitServiceImpl::class,
         SettingService::class => SettingServiceImpl::class,
-        StorageService::class => LocalStorageServiceImpl::class,
         TransactionService::class => TransactionServiceImpl::class,
         UnitConfigService::class => UnitConfigServiceImpl::class,
         UnitService::class => UnitServiceImpl::class,
