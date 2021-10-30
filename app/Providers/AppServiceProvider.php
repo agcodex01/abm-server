@@ -6,6 +6,7 @@ use App\Http\Implementations\AccountServiceImpl;
 use App\Http\Implementations\BillerServiceImpl;
 use App\Http\Implementations\CollectionServiceImpl;
 use App\Http\Implementations\DashboardServiceImpl;
+use App\Http\Implementations\FeedbackServiceImpl;
 use App\Http\Implementations\LocalStorageServiceImpl;
 use App\Http\Implementations\RemitServiceImpl;
 use App\Http\Implementations\SettingServiceImpl;
@@ -17,6 +18,7 @@ use App\Http\Services\AccountService;
 use App\Http\Services\BillerService;
 use App\Http\Services\CollectionService;
 use App\Http\Services\DashboardService;
+use App\Http\Services\FeedbackService;
 use App\Http\Services\RemitService;
 use App\Http\Services\SettingService;
 use App\Http\Services\StorageService;
@@ -33,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
         BillerService::class => BillerServiceImpl::class,
         CollectionService::class => CollectionServiceImpl::class,
         DashboardService::class => DashboardServiceImpl::class,
+        FeedbackService::class => FeedbackServiceImpl::class,
         RemitService::class => RemitServiceImpl::class,
         SettingService::class => SettingServiceImpl::class,
         StorageService::class => LocalStorageServiceImpl::class,
