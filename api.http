@@ -2,12 +2,12 @@ GET http://127.0.0.1:8000/sanctum/csrf-cookie
 
 ###
 
-POST http://127.0.0.1:8000/login
+POST http://127.0.0.1:8000/api/login
 Content-Type: application/json
 Accept: application/json
 
 {
-    "email": "admin@adopisoft.com",
+    "email": "collector@adopisoft.com",
     "password": "password"
 }
 ###
@@ -201,4 +201,10 @@ Content-Type: application/json
 {
     "roles": ["Manager"]
 }
+
+###
+
+GET http://127.0.0.1:8000/api/feedback
+Accept: application/json
+Authorization: Bearer 26|Y0ixMdKTVTGx2S2Ewj5YJIBvMUneTWQpTsT8KXj1
 
