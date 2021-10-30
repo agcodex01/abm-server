@@ -4,24 +4,12 @@ namespace App\Http\Implementations;
 
 use App\Filters\CollectionFilter;
 use App\Http\Services\CollectionService;
-use App\Http\Services\StorageService;
-use App\Http\Services\UnitService;
 use App\Models\Collection;
 use App\Utils\StorageUtil;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 
 class CollectionServiceImpl implements CollectionService
 {
-
-    private UnitService $unitService;
-    private StorageService $storageService;
-
-    public function __construct(UnitService $unitService, StorageService $storageService)
-    {
-        $this->unitService = $unitService;
-        $this->storageService = $storageService;
-    }
-
     public function findAll(CollectionFilter $filter): EloquentCollection
     {
         return Collection::with('unit')->filter($filter)->get();
@@ -34,8 +22,6 @@ class CollectionServiceImpl implements CollectionService
 
     public function create(array $data): Collection
     {
-        $unit = $this->unitService->findById($data['unit_id']);
-        $this->unitService->minusFund($unit, $data['total']);
         return Collection::create($data);
     }
 
@@ -46,7 +32,7 @@ class CollectionServiceImpl implements CollectionService
 
     public function delete(Collection $collection)
     {
-        $collection->images->each(fn ($image) => $this->storageService->deleteImage($image->url));
+        $collection->images()->delete();
 
         return $collection->delete();
     }
@@ -56,14 +42,12 @@ class CollectionServiceImpl implements CollectionService
         foreach ($images as $image) {
 
             $name = StorageUtil::generateFileName($image);
-            $path = Collection::IMAGES_LOCATION . '/' . $name;
+            $path = 'data:image/' .  pathinfo($image, PATHINFO_EXTENSION) . ';base64,' . base64_encode(file_get_contents($image));
 
             $collection->images()->create([
                 'name' => $name,
                 'url' => $path
             ]);
-
-            $this->storageService->uploadImage($image, $path);
         }
     }
 }

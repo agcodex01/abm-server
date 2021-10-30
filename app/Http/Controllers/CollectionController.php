@@ -5,15 +5,15 @@ namespace App\Http\Controllers;
 use App\Filters\CollectionFilter;
 use App\Http\Requests\CollectionRequest;
 use App\Http\Services\CollectionService;
+use App\Http\Services\UnitService;
 use App\Models\Collection;
 
 class CollectionController extends Controller
 {
-    private CollectionService $collectionService;
-
-    public function __construct(CollectionService $collectionService)
-    {
-        $this->collectionService = $collectionService;
+    public function __construct(
+        private CollectionService $collectionService,
+        private UnitService $unitService
+    ) {
     }
     /**
      * Display a listing of the collection.
@@ -33,6 +33,22 @@ class CollectionController extends Controller
      */
     public function store(CollectionRequest $request)
     {
+        $data = $request->validated();
+
+        $unit = $this->unitService->findById($data['unit_id']);
+
+        if ($unit->fund < $data['total']) {
+            return response([
+                'errors' => [
+                    'total' => [
+                        'The total should not be greater than unit fund.'
+                    ]
+                ]
+            ], 422);
+        }
+
+        $this->unitService->minusFund($unit, $data['total']);
+
         $collection = $this->collectionService->create($request->validated());
 
         if ($request->hasFile('images')) {
