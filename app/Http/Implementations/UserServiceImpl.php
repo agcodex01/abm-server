@@ -3,7 +3,6 @@
 namespace App\Http\Implementations;
 
 use App\Http\Services\UserService;
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Hash;

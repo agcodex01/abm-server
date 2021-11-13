@@ -206,5 +206,10 @@ Content-Type: application/json
 
 GET http://127.0.0.1:8000/api/feedback
 Accept: application/json
-Authorization: Bearer 26|Y0ixMdKTVTGx2S2Ewj5YJIBvMUneTWQpTsT8KXj1
+Authorization: Bearer 45|64nWJljNQipBWqkY7lxq4EnjKiBvWsPuGVpkFpAZ
+
+###
+GET http://127.0.0.1:8000/api/users/94ab6088-e926-439d-af74-ca0b46e3a916/notifications
+Accept: application/json
+Authorization: Bearer 45|64nWJljNQipBWqkY7lxq4EnjKiBvWsPuGVpkFpAZ
 

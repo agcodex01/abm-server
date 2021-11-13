@@ -6,6 +6,7 @@ use App\Http\Controllers\BillerController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RemitController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TransactionController;
@@ -53,4 +54,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('settings', [SettingController::class, 'update']);
     Route::get('feedback', [FeedbackController::class, 'index']);
     Route::post('feedback', [FeedbackController::class, 'create']);
+    Route::get('users/{user}/notifications', [NotificationController::class, 'notifications']);
+    Route::post('users/{user}/notifications/{id}/read', [NotificationController::class, 'read']);
+    Route::post('users/{user}/notifications/mark-all-as-read', [NotificationController::class, 'markAllAsRead']);
 });
