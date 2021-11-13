@@ -30,7 +30,8 @@ class UserController extends Controller
         return $this->userService->getRoles();
     }
 
-    public function hasAccess(Request $request, User $user) {
+    public function hasAccess(Request $request, User $user)
+    {
         return $this->userService->hasAccess($user, $request->roles);
     }
 
