@@ -27,9 +27,9 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:3',
-            'email' => 'required|email:filter|unique:users,email' . $this->getUniqueRule($this->user),
-            'password' => 'sometimes|min:8',
+            'name' => 'required|string|min:3|max:100',
+            'email' => 'required|max:100|email:filter|unique:users,email' . $this->getUniqueRule($this->user),
+            'password' => 'sometimes|min:8|max:100',
             'roles' => 'sometimes|array',
             'roles.*' => 'exists:roles,name'
         ];

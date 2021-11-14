@@ -27,7 +27,7 @@ class BillerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:billers,name' . $this->getUniqueRule($this->biller),
+            'name' => 'required|string|max:100|unique:billers,name' . $this->getUniqueRule($this->biller),
             'type' => 'required'
         ];
     }

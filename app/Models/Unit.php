@@ -18,8 +18,7 @@ class Unit extends Model
         'fund',
         'postal_code',
         'province',
-        'city',
-        'municipality',
+        'city_municipality',
         'barangay',
         'street'
     ];

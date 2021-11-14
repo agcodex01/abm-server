@@ -24,8 +24,8 @@ class AccountRequest extends FormRequest
     public function rules()
     {
         return [
-            'biller_id' => 'required|exists:billers,id',
-            'service_number' => 'required'
+            'biller_id' => 'required|uuid|exists:billers,id',
+            'service_number' => 'required|max:100'
         ];
     }
 }

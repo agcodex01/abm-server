@@ -24,9 +24,10 @@ class RemitRequest extends FormRequest
     public function rules()
     {
         return [
-            'remitted_by' => 'required',
+            'remitted_by' => 'required|string|max:100',
             'total' => 'required|numeric',
-            'transaction_ids' =>'required|array'
+            'transaction_ids' =>'required|array',
+            'transaction_ids.*' => 'uuid'
         ];
     }
 }
