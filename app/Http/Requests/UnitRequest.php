@@ -25,14 +25,13 @@ class UnitRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
-            'fund' => 'required',
-            'postal_code' => 'required',
-            'province' => 'required',
-            'city' => 'sometimes',
-            'municipality' => 'required',
-            'barangay' => 'sometimes',
-            'street' => 'sometimes'
+            'name' => 'required|string|max:100',
+            'fund' => 'required|integer',
+            'postal_code' => 'required|integer',
+            'province' => 'required|max:100',
+            'city_municipality' => 'required|string|max:100',
+            'barangay' => 'sometimes|string|max:100',
+            'street' => 'sometimes|string|max:100'
         ];
     }
 }
