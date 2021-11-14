@@ -28,7 +28,7 @@ class FeedbackRequest extends FormRequest
         return [
             'unit_id' => 'required|uuid|exists:units,id',
             'account_id' => 'required|uuid|exists:accounts,id',
-            'message' => 'required|string'
+            'message' => 'required|string|max:100'
         ];
     }
 }

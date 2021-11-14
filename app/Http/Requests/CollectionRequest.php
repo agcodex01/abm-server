@@ -25,7 +25,7 @@ class CollectionRequest extends FormRequest
     {
         return [
             'unit_id' => 'required|uuid|exists:units,id',
-            'collected_by' => 'required',
+            'collected_by' => 'required|string|max:100',
             'total' => 'required|numeric',
             'collected_at' => 'required|date',
             'images' => 'sometimes|array',

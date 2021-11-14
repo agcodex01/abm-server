@@ -26,7 +26,7 @@ class TransactionRequest extends FormRequest
         return [
             'biller_id' => 'required|uuid|exists:billers,id',
             'account_id' => 'required|uuid|exists:accounts,id',
-            'service_number' => 'required',
+            'service_number' => 'required|max:100',
             'number' => 'required|numeric',
             'amount' => 'required|numeric',
             'insertedAmount' => 'required|numeric'
