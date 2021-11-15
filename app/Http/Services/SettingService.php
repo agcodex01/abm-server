@@ -6,6 +6,7 @@ use App\Models\Setting;
 
 interface SettingService
 {
+    const DEFAULT_FEE = 5;
     /**
      * Get App Setting
      *
