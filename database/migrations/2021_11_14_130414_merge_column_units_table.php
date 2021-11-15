@@ -15,7 +15,7 @@ class MergeColumnUnitsTable extends Migration
     {
         Schema::table('units', function (Blueprint $table) {
             $table->dropColumn(['city', 'municipality']);
-            $table->string('city_municipality');
+            $table->string('city_municipality')->nullable();
         });
     }
 

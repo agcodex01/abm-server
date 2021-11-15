@@ -15,14 +15,20 @@ class SettingServiceImpl implements SettingService
 
     public function findOrCreate(): Setting
     {
-        return Setting::firstOrCreate([
-            'fee' => 5
-        ]);
+        $setting = Setting::first();
+
+        if (!$setting) {
+            $setting = Setting::create([
+                'fee' => SettingService::DEFAULT_FEE
+            ]);
+        }
+
+        return $setting;
     }
 
     public function update(array $data): Setting
     {
-        $setting = Setting::first();
+        $setting = $this->findOrCreate();
         $setting->update($data);
 
         return $setting;
