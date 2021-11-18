@@ -34,7 +34,7 @@ class UserServiceImpl implements UserService
 
     public function getRoles(): array
     {
-        return User::ROLES;
+        return [User::MANAGER, User::COLLECTOR];
     }
 
     public function create(array $data): User
