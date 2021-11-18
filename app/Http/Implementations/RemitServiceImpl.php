@@ -2,6 +2,7 @@
 
 namespace App\Http\Implementations;
 
+use App\Exports\RemitTransactionExport;
 use App\Filters\RemitFilter;
 use App\Http\Services\RemitService;
 use App\Http\Services\TransactionService;
@@ -9,6 +10,7 @@ use App\Models\Remit;
 use App\Models\Transaction;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RemitServiceImpl implements RemitService
 {
@@ -44,6 +46,17 @@ class RemitServiceImpl implements RemitService
         $this->associateRemitTransactions($data['transaction_ids'], $remit);
 
         return $remit;
+    }
+
+    public function downloadReport(Remit $remit)
+    {
+        return Excel::download(new RemitTransactionExport($remit), $this->generateReportName($remit->created_at));
+    }
+
+
+    private function generateReportName($date): string
+    {
+        return 'remit_report_' . $date . '.xlsx';
     }
 
     private function associateRemitTransactions(array $transactionIds, Remit $remit)

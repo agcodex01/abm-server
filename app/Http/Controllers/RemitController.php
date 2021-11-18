@@ -34,4 +34,9 @@ class RemitController extends Controller
     {
         return $this->remitService->create($request->validated());
     }
+
+    public function download(Remit $remit)
+    {
+        return $this->remitService->downloadReport($remit);
+    }
 }
