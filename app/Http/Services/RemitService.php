@@ -26,7 +26,7 @@ interface RemitService
      */
     public function findRemitTransactions(Remit $remit): Collection;
 
-     /**
+    /**
      * Get specific remit;
      *
      * @param Remit $remit remit object
@@ -35,7 +35,7 @@ interface RemitService
      */
     public function find(Remit $remit): Remit;
 
-     /**
+    /**
      * Create new Remit;
      *
      * @param array $data remit data
@@ -43,4 +43,11 @@ interface RemitService
      * @return Remit remit object.
      */
     public function create(array $data): Remit;
+
+    /**
+     * Download Remit report
+     *
+     * @param \App\Models\Remit $remit
+     */
+    public function downloadReport(Remit $remit);
 }
