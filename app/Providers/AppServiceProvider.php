@@ -7,6 +7,7 @@ use App\Http\Implementations\BillerServiceImpl;
 use App\Http\Implementations\CollectionServiceImpl;
 use App\Http\Implementations\DashboardServiceImpl;
 use App\Http\Implementations\FeedbackServiceImpl;
+use App\Http\Implementations\ITextMoServiceImpl;
 use App\Http\Implementations\NotificationServiceImpl;
 use App\Http\Implementations\RemitServiceImpl;
 use App\Http\Implementations\SettingServiceImpl;
@@ -22,6 +23,7 @@ use App\Http\Services\FeedbackService;
 use App\Http\Services\NotificationService;
 use App\Http\Services\RemitService;
 use App\Http\Services\SettingService;
+use App\Http\Services\SmsService;
 use App\Http\Services\TransactionService;
 use App\Http\Services\UnitConfigService;
 use App\Http\Services\UnitService;
@@ -39,6 +41,7 @@ class AppServiceProvider extends ServiceProvider
         NotificationService::class => NotificationServiceImpl::class,
         RemitService::class => RemitServiceImpl::class,
         SettingService::class => SettingServiceImpl::class,
+        SmsService::class => ITextMoServiceImpl::class,
         TransactionService::class => TransactionServiceImpl::class,
         UnitConfigService::class => UnitConfigServiceImpl::class,
         UnitService::class => UnitServiceImpl::class,

@@ -2,22 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewTransactionCreated;
 use App\Filters\TransactionFilter;
 use App\Http\Requests\TransactionRequest;
-use App\Http\Services\NotificationService;
 use App\Http\Services\TransactionService;
 use App\Models\Unit;
-use App\Notifications\TransactionCreated;
 
 class TransactionController extends Controller
 {
     private TransactionService $transactionService;
-    private NotificationService $notficationService;
 
-    public function __construct(TransactionService $transactionService, NotificationService $notficationService)
+    public function __construct(TransactionService $transactionService)
     {
         $this->transactionService = $transactionService;
-        $this->notficationService = $notficationService;
     }
 
     public function index(TransactionFilter $transactionFilter)
@@ -34,7 +31,7 @@ class TransactionController extends Controller
     {
         $transaction = $this->transactionService->create($request->validated(), $unit);
 
-        $this->notficationService->notifyUsers(new TransactionCreated($transaction));
+        NewTransactionCreated::dispatch($transaction);
 
         return $transaction;
     }
