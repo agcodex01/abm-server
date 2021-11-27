@@ -42,7 +42,7 @@ class UnitConfigController extends Controller
     public function delete(Unit $unit)
     {
         $this->permission->throwIfAccessDenied(
-            PermissionCapabilities::DELETE_UNITS_LABEL
+            PermissionCapabilities::DELETE_UNIT_CONFIG_LABEL
         );
 
         return $this->unitConfigService->deleteConfig($unit);

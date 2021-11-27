@@ -27,7 +27,7 @@ class SettingController extends Controller
     public function update(SettingRequest $request)
     {
         $this->permission->throwIfAccessDenied(
-            PermissionCapabilities::UPDATE_UNITS_LABEL
+            PermissionCapabilities::UPDATE_SETTING_LABEL
         );
 
         return $this->settingService->update($request->validated());

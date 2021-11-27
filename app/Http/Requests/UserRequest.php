@@ -2,15 +2,12 @@
 
 namespace App\Http\Requests;
 
-use App\Models\User;
-use App\Traits\Permission;
 use App\Traits\UniqueRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
 class UserRequest extends FormRequest
 {
-    use UniqueRule, Permission;
+    use UniqueRule;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -29,9 +26,6 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        if ($this->hasRules($this->method())) {
-            return [];
-        }
         return [
             'name' => 'required|string|min:3|max:100',
             'email' => 'required|max:100|email:filter|unique:users,email' . $this->getUniqueRule($this->user),

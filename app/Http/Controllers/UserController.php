@@ -69,7 +69,7 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user)
     {
         $this->permission->throwIfAccessDenied(
-            PermissionCapabilities::UPDATE_USER_PROFILE_LABEL
+            PermissionCapabilities::UPDATE_USERS_LABEL
         );
 
         return $this->userService->update($request->validated(), $user);
