@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthRequest;
 use App\Models\User;
+use App\Utils\Token;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -13,8 +14,8 @@ class AuthController extends Controller
         if (Auth::attempt($request->validated())) {
             $user = Auth::user();
             return response()->json([
-                'token' => $user->createToken('access_token')->plainTextToken,
-                'user' => $user,
+                'token' => $user->createToken(Token::WEB)->plainTextToken,
+                'user' => $user->with('roles')->find($user->id),
                 'success' => true
             ]);
         }

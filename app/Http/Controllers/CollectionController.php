@@ -7,12 +7,15 @@ use App\Http\Requests\CollectionRequest;
 use App\Http\Services\CollectionService;
 use App\Http\Services\UnitService;
 use App\Models\Collection;
+use App\Permission\Permission;
+use App\Permission\PermissionCapabilities;
 
 class CollectionController extends Controller
 {
     public function __construct(
         private CollectionService $collectionService,
-        private UnitService $unitService
+        private UnitService $unitService,
+        private Permission $permission
     ) {
     }
     /**
@@ -22,6 +25,10 @@ class CollectionController extends Controller
      */
     public function index(CollectionFilter $filter)
     {
+        $this->permission->throwIfAccessDenied(
+            PermissionCapabilities::VIEW_COLLECTIONS_LABEL
+        );
+
         return $this->collectionService->findAll($filter);
     }
 
@@ -33,6 +40,10 @@ class CollectionController extends Controller
      */
     public function store(CollectionRequest $request)
     {
+        $this->permission->throwIfAccessDenied(
+            PermissionCapabilities::CREATE_COLLECTIONS_LABEL
+        );
+
         $data = $request->validated();
 
         $unit = $this->unitService->findById($data['unit_id']);
@@ -66,6 +77,10 @@ class CollectionController extends Controller
      */
     public function show(string $collection)
     {
+        $this->permission->throwIfAccessDenied(
+            PermissionCapabilities::VIEW_COLLECTIONS_LABEL
+        );
+
         return $this->collectionService->findById($collection);
     }
 
@@ -78,6 +93,10 @@ class CollectionController extends Controller
      */
     public function update(CollectionRequest $request, Collection $collection)
     {
+        $this->permission->throwIfAccessDenied(
+            PermissionCapabilities::UPDATE_COLLECTIONS_LABEL
+        );
+
         return $this->collectionService->update(
             $request->validated(),
             $collection
@@ -92,6 +111,10 @@ class CollectionController extends Controller
      */
     public function destroy(Collection $collection)
     {
+        $this->permission->throwIfAccessDenied(
+            PermissionCapabilities::DELETE_COLLECTIONS_LABEL
+        );
+
         return $this->collectionService->delete($collection);
     }
 }

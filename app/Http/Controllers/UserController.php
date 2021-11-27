@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Http\Services\UserService;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Permission\Permission;
+use App\Permission\PermissionCapabilities;
 
 class UserController extends Controller
 {
-    private UserService $userService;
 
-    public function __construct(UserService $userService)
-    {
-        $this->userService = $userService;
+    public function __construct(
+        private UserService $userService,
+        private Permission $permission
+    ) {
     }
     /**
      * Display a listing of the resource.
@@ -22,17 +23,16 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->permission->throwIfAccessDenied(
+            PermissionCapabilities::VIEW_USERS_LABEL
+        );
+
         return $this->userService->findAll();
     }
 
     public function roles()
     {
         return $this->userService->getRoles();
-    }
-
-    public function hasAccess(Request $request, User $user)
-    {
-        return $this->userService->hasAccess($user, $request->roles);
     }
 
     /**
@@ -43,11 +43,19 @@ class UserController extends Controller
      */
     public function show(string $user)
     {
+        $this->permission->throwIfAccessDenied(
+            PermissionCapabilities::VIEW_USER_DETAIL_LABEL
+        );
+
         return $this->userService->findById($user);
     }
 
     public function store(UserRequest $request)
     {
+        $this->permission->throwIfAccessDenied(
+            PermissionCapabilities::CREATE_USERS_LABEL
+        );
+
         return $this->userService->create($request->validated());
     }
 
@@ -60,6 +68,10 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
+        $this->permission->throwIfAccessDenied(
+            PermissionCapabilities::UPDATE_USERS_LABEL
+        );
+
         return $this->userService->update($request->validated(), $user);
     }
 }
