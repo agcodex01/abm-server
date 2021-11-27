@@ -151,4 +151,6 @@ return [
 
         'store' => 'default',
     ],
+
+    'capabilities' => \App\Permission\PermissionCapabilities::CAPABILITIES
 ];

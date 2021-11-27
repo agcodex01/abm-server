@@ -7,23 +7,33 @@ use App\Filters\TransactionFilter;
 use App\Http\Requests\TransactionRequest;
 use App\Http\Services\TransactionService;
 use App\Models\Unit;
+use App\Permission\Permission;
+use App\Permission\PermissionCapabilities;
 
 class TransactionController extends Controller
 {
-    private TransactionService $transactionService;
 
-    public function __construct(TransactionService $transactionService)
-    {
-        $this->transactionService = $transactionService;
+    public function __construct(
+        private TransactionService $transactionService,
+        private Permission $permission
+    ) {
     }
 
     public function index(TransactionFilter $transactionFilter)
     {
+        $this->permission->throwIfAccessDenied(
+            PermissionCapabilities::VIEW_TRANSACTIONS_LABEL
+        );
+
         return $this->transactionService->findAll($transactionFilter);
     }
 
     public function unitTransactions(Unit $unit)
     {
+        $this->permission->throwIfAccessDenied(
+            PermissionCapabilities::VIEW_TRANSACTIONS_LABEL
+        );
+
         return $this->transactionService->findAllByUnit($unit);
     }
 
