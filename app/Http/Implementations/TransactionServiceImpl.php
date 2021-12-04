@@ -55,7 +55,7 @@ class TransactionServiceImpl implements TransactionService
     {
         $this->unitService->addFund($unit, $data['insertedAmount']);
 
-        $this->accountService->updateBalance($account, $data);
+        $this->accountService->cancelTransactionUpdate($account, $data);
 
         return $unit->transactions()->create($data);
     }

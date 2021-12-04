@@ -52,15 +52,26 @@ class AccountServiceImpl implements AccountService
 
     public function updateBalance(Account $account, array $data)
     {
-        if ($account->balance >= $data['amount']) {
-            $balance =  $account->balance - $data['amount'];
+        if ($account->balance >= $data['insertedAmount']) {
+            $account->update([
+                'number' => $data['number'],
+                'balance' => $account->balance - $data['insertedAmount']
+            ]);
         } else {
-            $balance = $data['insertedAmount'] - $data['amount'];
+            $account->update([
+                'number' => $data['number'],
+                'balance' => $data['insertedAmount'] - $data['amount']
+            ]);
         }
+    }
 
-        $account->update([
-            'number' => $data['number'],
-            'balance' => $balance
-        ]);
+    public function cancelTransactionUpdate(Account $account, array $data)
+    {
+        if ($data['insertedAmount'] > $account->balance) {
+            $account->update([
+                'number' => $data['number'],
+                'balance' => $account->balance + ($data['insertedAmount'] - $account->balance)
+            ]);
+        }
     }
 }
