@@ -30,6 +30,15 @@ class UserController extends Controller
         return $this->userService->findAll();
     }
 
+    public function collectors()
+    {
+        $this->permission->throwIfAccessDenied(
+            PermissionCapabilities::VIEW_USERS_COLLECTOR_LABEL
+        );
+
+        return $this->userService->collectors();
+    }
+
     public function roles()
     {
         return $this->userService->getRoles();
@@ -73,5 +82,15 @@ class UserController extends Controller
         );
 
         return $this->userService->update($request->validated(), $user);
+    }
+
+    public function resetPassword(User $user)
+    {
+        return $this->userService->resetPassword($user);
+    }
+
+    public function disabled(User  $user, bool $status)
+    {
+        return $this->userService->disabled($user, $status);
     }
 }

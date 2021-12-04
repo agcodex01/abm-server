@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Filters\TransactionFilter;
+use App\Models\Account;
 use App\Models\Transaction;
 use App\Models\Unit;
 use Illuminate\Database\Eloquent\Collection;
@@ -54,4 +55,6 @@ interface TransactionService
      *
      */
     public function getTransactionCountPerWeek(): array;
+
+    public function cancelTransaction(Unit $unit, Account $account, array $data);
 }

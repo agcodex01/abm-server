@@ -39,7 +39,7 @@ class RemitTransactionExport implements
             'Unit',
             'Biller',
             'Biller Type',
-            'Service #',
+            'Account #',
             'Contact #',
             'Amount',
             'Created At'

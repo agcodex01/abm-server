@@ -24,7 +24,8 @@ class RemitServiceImpl implements RemitService
 
     public function findAll(RemitFilter $remitFilter): Collection
     {
-        return Remit::filter($remitFilter)->get();
+        return Remit::filter($remitFilter)
+            ->latest()->get();
     }
 
     public function findRemitTransactions(Remit $remit): Collection
@@ -64,7 +65,7 @@ class RemitServiceImpl implements RemitService
         foreach ($transactionIds as $transactionId) {
             $transaction = $this->transactionService->findById($transactionId);
             $transaction->update([
-                'status' => Transaction::REMMITED,
+                'status' => Transaction::REMITTED,
                 'remit_id' => $remit->id
             ]);
         }

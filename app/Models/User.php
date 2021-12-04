@@ -22,6 +22,7 @@ class User extends Authenticatable
     const ADMIN = 'Admin';
     const MANAGER = 'Manager';
     const COLLECTOR = 'Collector';
+    const DEFAULT_PASSWORD = 'password';
 
     const ROLES = [
         self::ADMIN,
@@ -39,6 +40,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'disabled'
     ];
 
     /**
@@ -58,5 +60,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'disabled' => 'bool'
     ];
 }

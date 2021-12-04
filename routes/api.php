@@ -45,10 +45,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('dashboard/summary', [DashboardController::class, 'summary']);
     Route::get('dashboard/transactions/preview', [DashboardController::class, 'transactionPreview']);
     Route::apiResource('users', UserController::class);
-    Route::get('users/{user}/roles/hasAccess', [UserController::class, 'hasAccess']);
+    Route::get('users/roles/collectors', [UserController::class, 'collectors']);
+    Route::put('users/{user}/password-reset', [UserController::class, 'resetPassword']);
+    Route::put('users/{user}/disabled/{status}', [UserController::class, 'disabled']);
     Route::get('roles', [UserController::class, 'roles']);
     Route::get('units/{unit}/config', [UnitConfigController::class, 'getConfig']);
     Route::post('units/{unit}/config', [UnitConfigController::class, 'store']);
+    Route::post('units/{unit}/accounts/{account}/cancelTransaction', [TransactionController::class, 'cancelTransaction']);
     Route::delete('units/{unit}/config', [UnitConfigController::class, 'delete']);
     Route::get('settings', [SettingController::class, 'get']);
     Route::put('settings', [SettingController::class, 'update']);
@@ -59,3 +62,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('users/{user}/notifications/mark-all-as-read', [NotificationController::class, 'markAllAsRead']);
     Route::get('remits/{remit}/reports/download', [RemitController::class, 'download']);
 });
+
+Route::get('externals/units', [UnitController::class, 'external']);
