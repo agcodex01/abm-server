@@ -9,9 +9,15 @@ use Illuminate\Support\Facades\Hash;
 
 class UserServiceImpl implements UserService
 {
-    public function findAll(): Collection
+    public function findAll()
     {
-        return User::with('roles')->get();
+        $users = collect([]);
+
+        User::latest()->with('roles')->get()
+            ->filter(fn ($user) => !$user->hasAnyRole(User::ADMIN))
+            ->each(fn ($user) => $users->push($user));
+
+        return $users;
     }
 
     public function findById(string $id)
@@ -48,8 +54,27 @@ class UserServiceImpl implements UserService
         return $user;
     }
 
+    public function collectors()
+    {
+        return User::role(User::COLLECTOR)->get();
+    }
+
     public function hasAccess(User $user, array $roles): bool
     {
         return $user->hasAnyRole($roles);
+    }
+
+    public function resetPassword(User $user)
+    {
+        return $user->update([
+            'password' => Hash::make(User::DEFAULT_PASSWORD)
+        ]);
+    }
+
+    public function disabled(User $user, bool $status)
+    {
+        return $user->update([
+            'disabled' => $status
+        ]);
     }
 }

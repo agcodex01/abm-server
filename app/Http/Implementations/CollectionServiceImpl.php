@@ -12,7 +12,10 @@ class CollectionServiceImpl implements CollectionService
 {
     public function findAll(CollectionFilter $filter): EloquentCollection
     {
-        return Collection::with('unit')->filter($filter)->get();
+        return Collection::with('unit')
+            ->filter($filter)
+            ->latest()
+            ->get();
     }
 
     public function findById(string $id): Collection

@@ -10,7 +10,9 @@ class FeedbackServiceImpl implements FeedbackService
 {
     public function findAll(): Collection
     {
-        return Feedback::with('account.biller', 'unit')->get();
+        return Feedback::with('account.biller', 'unit')
+            ->latest()
+            ->get();
     }
 
 

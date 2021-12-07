@@ -10,7 +10,7 @@ class UnitServiceImpl implements UnitService
 {
     public function findAll(): Collection
     {
-        return Unit::withCount('collections', 'transactions')->get();
+        return Unit::latest()->withCount('collections', 'transactions')->get();
     }
     public function findById(string $id): Unit
     {

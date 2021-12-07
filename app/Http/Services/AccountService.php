@@ -40,4 +40,7 @@ interface AccountService
      * @return App\Models\Account
      */
     public function findById(string $id): Account;
+
+    public function updateBalance(Account $account, array $data);
+    public function cancelTransactionUpdate(Account $account, array $data);
 }

@@ -30,6 +30,9 @@ class PermissionCapabilities
     const VIEW_USERS_LABEL = 'view_users';
     const VIEW_USERS = self::ADMIN_ONLY;
 
+    const VIEW_USERS_COLLECTOR_LABEL = 'view_users_collector';
+    const VIEW_USERS_COLLECTOR = self::NOT_COLLECTOR_ONLY;
+
     const VIEW_USER_DETAIL_LABEL = 'view_user_detail';
     const VIEW_USER_DETAIL = self::ALL;
 
@@ -96,6 +99,9 @@ class PermissionCapabilities
     const CREATE_TRANSACTIONS_LABEL = 'create_transactions';
     const CREATE_TRANSACTIONS = self::ADMIN_ONLY;
 
+    const CANCEL_TRANSACTION_LABEL = 'cancel_transactions';
+    const CANCEL_TRANSACTION = self::ADMIN_ONLY;
+
     const VIEW_UNIT_CONFIG_LABEL = 'view_unit_config';
     const VIEW_UNIT_CONFIG = self::NOT_COLLECTOR_ONLY;
 
@@ -124,6 +130,7 @@ class PermissionCapabilities
         self::VIEW_USER_DETAIL_LABEL => self::VIEW_USER_DETAIL,
         self::CREATE_USERS_LABEL => self::CREATE_USERS,
         self::UPDATE_USERS_LABEL => self::UPDATE_USER,
+        self::VIEW_USERS_COLLECTOR_LABEL => self::VIEW_USERS_COLLECTOR,
 
         self::VIEW_ACCOUNTS_LABEL => self::VIEW_ACCOUNTS,
 
@@ -151,6 +158,7 @@ class PermissionCapabilities
 
         self::VIEW_TRANSACTIONS_LABEL => self::VIEW_TRANSACTIONS,
         self::CREATE_TRANSACTIONS_LABEL => self::CREATE_TRANSACTIONS,
+        self::CANCEL_TRANSACTION_LABEL => self::CANCEL_TRANSACTION,
 
         self::VIEW_UNIT_CONFIG_LABEL => self::VIEW_UNIT_CONFIG,
         self::CREATE_UNIT_CONFIG_LABEL => self::CREATE_UNIT_CONFIG,

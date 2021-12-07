@@ -37,4 +37,12 @@ class Unit extends Model
     {
         return $this->hasOne(UnitConfig::class);
     }
+
+    public static function externalDto(Unit $unit)
+    {
+        return [
+            'id' => $unit->id,
+            'name' => $unit->name,
+        ];
+    }
 }

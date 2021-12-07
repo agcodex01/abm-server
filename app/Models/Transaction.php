@@ -12,7 +12,8 @@ class Transaction extends Model
     use HasFactory, Uuids, Filterable;
 
     const PENDING = 'pending';
-    const REMMITED = 'remmited';
+    const REMITTED = 'remitted';
+    const CANCELLED = 'cancelled';
 
     protected $fillable = [
         'unit_id',

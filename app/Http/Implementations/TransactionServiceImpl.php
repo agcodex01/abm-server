@@ -6,6 +6,7 @@ use App\Filters\TransactionFilter;
 use App\Http\Services\AccountService;
 use App\Http\Services\TransactionService;
 use App\Http\Services\UnitService;
+use App\Models\Account;
 use App\Models\Transaction;
 use App\Models\Unit;
 use Carbon\Carbon;
@@ -26,6 +27,7 @@ class TransactionServiceImpl implements TransactionService
     {
         return Transaction::with('biller', 'unit')
             ->filter($transactionFilter)
+            ->latest()
             ->get();
     }
 
@@ -42,19 +44,20 @@ class TransactionServiceImpl implements TransactionService
     public function create(array $data, Unit $unit): Transaction
     {
         $account = $this->accountService->findById($data['account_id']);
-        $account->update([
-            'number' => $data['number'],
-            'balance' => $this->getBalance($data, $account->balance)
-        ]);
+        $this->accountService->updateBalance($account, $data);
 
         $this->unitService->addFund($unit, $data['insertedAmount']);
 
         return $unit->transactions()->create($data);
     }
 
-    private function getBalance(array $transactionData, $currentBalance)
+    public function cancelTransaction(Unit $unit, Account $account, array $data)
     {
-        return $currentBalance + ($transactionData['insertedAmount'] - $transactionData['amount']);
+        $this->unitService->addFund($unit, $data['insertedAmount']);
+
+        $this->accountService->cancelTransactionUpdate($account, $data);
+
+        return $unit->transactions()->create($data);
     }
 
     public function getTransactionCountPerWeek(): array
@@ -87,12 +90,15 @@ class TransactionServiceImpl implements TransactionService
     private function weeksOfMonth(): array
     {
         $yearAndMonth = date('Y/m/');
+        $firstWeekOfMonth = date('W', strtotime($yearAndMonth . '01'));
+        $lastDayOfMonth = Carbon::now()->endOfMonth()->format('t');
+        $lastWeekOfMonth =  date('W', strtotime($yearAndMonth . $lastDayOfMonth));
 
-        return array(
-            date('W', strtotime($yearAndMonth . '07')),
-            date('W', strtotime($yearAndMonth . '14')),
-            date('W', strtotime($yearAndMonth . '21')),
-            date('W', strtotime($yearAndMonth . '28')),
-        );
+        $weeks = collect([]);
+        for ($i = $firstWeekOfMonth; $i <= $lastWeekOfMonth; $i++) {
+            $weeks->push($i);
+        }
+
+        return $weeks->toArray();
     }
 }

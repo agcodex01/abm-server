@@ -27,6 +27,11 @@ class UnitController extends Controller
         return $this->unitService->findAll();
     }
 
+    public function external()
+    {
+        return $this->unitService->findAll()->map(fn ($unit) => Unit::externalDto($unit));
+    }
+
     public function show(Unit $unit)
     {
         $this->permission->throwIfAccessDenied(

@@ -10,7 +10,7 @@ interface UserService
     /**
      * Find all users
      */
-    public function findAll(): Collection;
+    public function findAll();
 
     /**
      * Find by ID
@@ -47,13 +47,9 @@ interface UserService
      */
     public function create(array $data): User;
 
-    /**
-     * Check if user has access with the given role.
-     *
-     * @param \App\Models\User $user
-     * @param array $roles roles to compare
-     *
-     * @return bool if user has access
-     */
-    public function hasAccess(User $user, array $roles): bool;
+    public function collectors();
+
+    public function resetPassword(User $user);
+
+    public function disabled(User $user, bool $status);
 }

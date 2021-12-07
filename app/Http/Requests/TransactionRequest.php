@@ -29,7 +29,8 @@ class TransactionRequest extends FormRequest
             'service_number' => 'required|max:100',
             'number' => 'required|numeric',
             'amount' => 'required|numeric',
-            'insertedAmount' => 'required|numeric'
+            'insertedAmount' => 'required|numeric',
+            'status' => 'sometimes|string'
         ];
     }
 }
