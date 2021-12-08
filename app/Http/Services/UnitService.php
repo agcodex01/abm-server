@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use App\Filters\UnitFilter;
 use App\Models\Unit;
 use Illuminate\Database\Eloquent\Collection;
 use LogicException;
@@ -13,7 +14,7 @@ interface UnitService
      *
      * @return lluminate\Database\Eloquent\Collection collection of unit.
      */
-    public function findAll(): Collection;
+    public function findAll(UnitFilter $filter): Collection;
 
     /**
      * Find Unit by ID.

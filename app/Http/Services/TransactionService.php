@@ -13,7 +13,7 @@ interface TransactionService
     /**
      * Get all transactions;
      *
-     * @param \App\Filters\TransactionFilter
+     * @param \App\Filters\TransactionFilter $transactionFilter
      *
      * @return lluminate\Database\Eloquent\Collection collection of transactions.
      */

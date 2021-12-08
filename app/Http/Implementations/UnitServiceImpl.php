@@ -2,15 +2,19 @@
 
 namespace App\Http\Implementations;
 
+use App\Filters\UnitFilter;
 use App\Http\Services\UnitService;
 use App\Models\Unit;
 use Illuminate\Database\Eloquent\Collection;
 
 class UnitServiceImpl implements UnitService
 {
-    public function findAll(): Collection
+    public function findAll(UnitFilter $filter): Collection
     {
-        return Unit::latest()->withCount('collections', 'transactions')->get();
+        return Unit::filter($filter)
+            ->latest()
+            ->withCount('collections', 'transactions')
+            ->get();
     }
     public function findById(string $id): Unit
     {
