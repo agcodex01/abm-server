@@ -58,10 +58,12 @@ class AccountServiceImpl implements AccountService
                 'balance' => $account->balance - $data['insertedAmount']
             ]);
         } else {
-            $account->update([
-                'number' => $data['number'],
-                'balance' => $data['insertedAmount'] - $data['amount']
-            ]);
+            if ($data['insertedAmount'] >= $data['amount']) {
+                $account->update([
+                    'number' => $data['number'],
+                    'balance' => $data['insertedAmount'] - $data['amount']
+                ]);
+            }
         }
     }
 
