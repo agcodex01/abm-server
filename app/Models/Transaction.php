@@ -23,7 +23,8 @@ class Transaction extends Model
         'service_number',
         'number',
         'amount',
-        'status'
+        'status',
+        'insertedAmount'
     ];
 
     public function biller()
