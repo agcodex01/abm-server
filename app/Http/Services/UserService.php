@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use App\Filters\UserFilter;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -10,7 +11,7 @@ interface UserService
     /**
      * Find all users
      */
-    public function findAll();
+    public function findAll(UserFilter $userFilter);
 
     /**
      * Find by ID

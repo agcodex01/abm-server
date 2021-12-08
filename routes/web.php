@@ -1,9 +1,8 @@
 <?php
 
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return Carbon::now();
+    return config('permission.capabilities');
     // return view('welcome');
 });
