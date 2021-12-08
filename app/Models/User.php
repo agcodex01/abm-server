@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Filterable;
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,7 +16,8 @@ class User extends Authenticatable
         Notifiable,
         HasApiTokens,
         Uuids,
-        HasRoles;
+        HasRoles,
+        Filterable;
 
     public $guard_name = 'api';
 
@@ -59,7 +61,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        'disabled' => 'bool'
+        'email_verified_at' => 'datetime'
     ];
 }

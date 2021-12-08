@@ -47,4 +47,11 @@ class UnitServiceImpl implements UnitService
             ]);
         }
     }
+
+    public function disabled(Unit $unit, bool $status)
+    {
+        return $unit->update([
+            'disabled' => $status
+        ]);
+    }
 }

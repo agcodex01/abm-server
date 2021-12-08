@@ -2,18 +2,26 @@
 
 namespace App\Http\Implementations;
 
+use App\Filters\UserFilter;
 use App\Http\Services\UserService;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Hash;
 
 class UserServiceImpl implements UserService
 {
-    public function findAll()
+    public function findAll(UserFilter $userFilter)
     {
         $users = collect([]);
 
-        User::latest()->with('roles')->get()
+        User::with('roles')
+            ->filter($userFilter)
+            ->whereHas('roles', function (Builder $query) {
+                $query->where('name', '!=', User::ADMIN);
+            })
+            ->latest()
+            ->get()
             ->filter(fn ($user) => !$user->hasAnyRole(User::ADMIN))
             ->each(fn ($user) => $users->push($user));
 
@@ -56,7 +64,15 @@ class UserServiceImpl implements UserService
 
     public function collectors()
     {
-        return User::role(User::COLLECTOR)->get();
+        $users = collect([]);
+
+        User::role(User::COLLECTOR)
+            ->where('disabled', 0)
+            ->get()
+            ->filter(fn ($user) => !$user->hasAnyRole(User::ADMIN))
+            ->each(fn ($user) => $users->push($user));
+
+        return $users;
     }
 
     public function hasAccess(User $user, array $roles): bool

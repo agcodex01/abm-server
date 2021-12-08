@@ -26,6 +26,7 @@ class Permission
             ->toArray();
 
         foreach ($roles as $role) {
+            error_log("ROLE : $role ". $this->capabilities[$capability][$role]);
             if ($this->capabilities[$capability][$role]) {
                 return true;
             }

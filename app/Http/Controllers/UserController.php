@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\UserFilter;
 use App\Http\Requests\UserRequest;
 use App\Http\Services\UserService;
 use App\Models\User;
@@ -21,13 +22,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(UserFilter $userFilter)
     {
         $this->permission->throwIfAccessDenied(
             PermissionCapabilities::VIEW_USERS_LABEL
         );
 
-        return $this->userService->findAll();
+        return $this->userService->findAll($userFilter);
     }
 
     public function collectors()
@@ -89,7 +90,7 @@ class UserController extends Controller
         return $this->userService->resetPassword($user);
     }
 
-    public function disabled(User  $user, bool $status)
+    public function disabled(User $user, bool $status)
     {
         return $this->userService->disabled($user, $status);
     }

@@ -20,7 +20,8 @@ class Unit extends Model
         'province',
         'city_municipality',
         'barangay',
-        'street'
+        'street',
+        'disabled',
     ];
 
     public function transactions()
