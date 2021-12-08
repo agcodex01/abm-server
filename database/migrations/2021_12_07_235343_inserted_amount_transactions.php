@@ -14,7 +14,7 @@ class InsertedAmountTransactions extends Migration
     public function up()
     {
         Schema::table('transactions', function (Blueprint $table) {
-            $table->double('insertedAmount', 8, 2);
+            $table->double('insertedAmount', 8, 2)->default(0);
         });
     }
 
