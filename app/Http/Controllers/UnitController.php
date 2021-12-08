@@ -68,4 +68,9 @@ class UnitController extends Controller
 
         return $this->unitService->delete($unit);
     }
+
+    public function disabled(Unit $unit, $status)
+    {
+        return $this->unitService->disabled($unit, $status);
+    }
 }

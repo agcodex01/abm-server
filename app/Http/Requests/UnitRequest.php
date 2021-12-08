@@ -27,7 +27,7 @@ class UnitRequest extends FormRequest
         return [
             'name' => 'required|string|max:100',
             'fund' => 'required|integer',
-            'postal_code' => 'required|integer',
+            'postal_code' => 'required|digits:4',
             'province' => 'required|max:100',
             'city_municipality' => 'required|string|max:100',
             'barangay' => 'sometimes|string|max:100',

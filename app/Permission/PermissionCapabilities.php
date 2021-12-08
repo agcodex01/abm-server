@@ -31,7 +31,7 @@ class PermissionCapabilities
     const VIEW_USERS = self::ADMIN_ONLY;
 
     const VIEW_USERS_COLLECTOR_LABEL = 'view_users_collector';
-    const VIEW_USERS_COLLECTOR = self::NOT_COLLECTOR_ONLY;
+    const VIEW_USERS_COLLECTOR = self::ALL;
 
     const VIEW_USER_DETAIL_LABEL = 'view_user_detail';
     const VIEW_USER_DETAIL = self::ALL;
@@ -58,7 +58,7 @@ class PermissionCapabilities
     const VIEW_COLLECTIONS = self::ALL;
 
     const CREATE_COLLECTIONS_LABEL = 'create_collections';
-    const  CREATE_COLLECTIONS = self::ALL;
+    const CREATE_COLLECTIONS = self::ALL;
 
     const UPDATE_COLLECTIONS_LABEL = 'update_collections';
     const UPDATE_COLLECTIONS = self::ALL;

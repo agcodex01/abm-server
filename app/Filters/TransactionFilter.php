@@ -20,7 +20,7 @@ class TransactionFilter extends Filter
     {
         return !$name ? $this->builder :
             $this->builder->whereHas('unit', function (Builder $query) use ($name) {
-                return $query->where('name', $name);
+                $query->where('name', $name);
             });
     }
 

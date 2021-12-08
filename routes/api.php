@@ -52,6 +52,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('units/{unit}/config', [UnitConfigController::class, 'getConfig']);
     Route::post('units/{unit}/config', [UnitConfigController::class, 'store']);
     Route::post('units/{unit}/accounts/{account}/cancelTransaction', [TransactionController::class, 'cancelTransaction']);
+    Route::put('units/{unit}/disabled/{status}', [UnitController::class, 'disabled']);
     Route::delete('units/{unit}/config', [UnitConfigController::class, 'delete']);
     Route::get('settings', [SettingController::class, 'get']);
     Route::put('settings', [SettingController::class, 'update']);

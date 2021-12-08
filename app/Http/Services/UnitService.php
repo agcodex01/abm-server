@@ -71,4 +71,6 @@ interface UnitService
      * @param int $amount the amount to minus in unit fund
      */
     public function minusFund(Unit $unit, int $amount);
+
+    public function disabled(Unit $unit, bool $status);
 }
