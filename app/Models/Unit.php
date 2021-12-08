@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Filterable;
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +12,8 @@ class Unit extends Model
 {
     use HasFactory,
         Uuids,
-        HasApiTokens;
+        HasApiTokens,
+        Filterable;
 
     protected $fillable = [
         'name',

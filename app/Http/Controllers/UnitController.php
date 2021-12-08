@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\UnitFilter;
 use App\Http\Requests\UnitRequest;
 use App\Http\Services\UnitService;
 use App\Models\Unit;
@@ -18,18 +19,19 @@ class UnitController extends Controller
     ) {
     }
 
-    public function index()
+    public function index(UnitFilter $filter)
     {
         $this->permission->throwIfAccessDenied(
             PermissionCapabilities::VIEW_UNITS_LABEL
         );
 
-        return $this->unitService->findAll();
+        return $this->unitService->findAll($filter);
     }
 
-    public function external()
+    public function external(UnitFilter $filter)
     {
-        return $this->unitService->findAll()->map(fn ($unit) => Unit::externalDto($unit));
+        return $this->unitService->findAll($filter)
+            ->map(fn ($unit) => Unit::externalDto($unit));
     }
 
     public function show(Unit $unit)
