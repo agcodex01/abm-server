@@ -2,11 +2,14 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\UniqueRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
 class UnitRequest extends FormRequest
 {
+    use UniqueRule;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -25,7 +28,7 @@ class UnitRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:100',
+            'name' => 'required|string|max:100|unique:units,name' . $this->getUniqueRule($this->unit),
             'fund' => 'required|integer',
             'postal_code' => 'required|digits:4',
             'province' => 'required|max:100',
